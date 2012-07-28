@@ -44,4 +44,29 @@ class TestPlayer < Test::Unit::TestCase
     @player.strike
     assert_equal(1, @player.strikeouts)
   end
+
+  def test_four_balls_is_base_on_balls
+    @player.ball
+    @player.ball
+    @player.ball
+    assert_equal(0, @player.walks)
+    @player.ball
+    assert_equal(1, @player.walks)
+  end
+
+  def test_walk_clears_count
+    @player.ball
+    @player.strike
+    @player.walk
+    assert_equal(0, @player.balls)
+    assert_equal(0, @player.strikes)
+  end
+
+  def test_strikeout_clears_count
+    @player.ball
+    @player.strike
+    @player.strikeout
+    assert_equal(0, @player.balls)
+    assert_equal(0, @player.strikes)
+  end
 end

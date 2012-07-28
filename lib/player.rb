@@ -1,6 +1,6 @@
 class Player
   attr_reader :name, :batting_average, :at_bats, :strikeouts
-  attr_reader :hits, :strikes
+  attr_reader :hits, :strikes, :balls, :walks
 
   def initialize(name)
     @name = name
@@ -9,11 +9,15 @@ class Player
     @strikeouts = 0
     @hits = 0
     @strikes = 0
+    @balls = 0
+    @walks = 0
   end
 
   def strikeout
     @strikeouts += 1
     @at_bats += 1
+    @balls = 0
+    @strikes = 0
   end
 
   def single
@@ -23,5 +27,16 @@ class Player
   def strike
     @strikes += 1
     self.strikeout if strikes >= 3
+  end
+
+  def ball
+    @balls += 1
+    self.walk if @balls >= 4
+  end
+
+  def walk
+    @walks += 1
+    @strikes = 0
+    @balls = 0
   end
 end
