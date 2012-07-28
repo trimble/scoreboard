@@ -15,4 +15,8 @@ class TestPlayer < Test::Unit::TestCase
   def test_batting_average_initialized_to_zero
     assert_equal(0, @player.batting_average)
   end
+
+  def test_at_bats_initialized_to_zero
+    assert_equal(0, @player.at_bats)
+  end
 end
