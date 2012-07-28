@@ -14,6 +14,7 @@ class TestPlayer < Test::Unit::TestCase
     assert_equal(0, @player.at_bats)
     assert_equal(0, @player.strikeouts)
     assert_equal(0, @player.hits)
+    assert_equal(0, @player.strikes)
   end
 
   def test_strikeouts_increment
@@ -29,5 +30,18 @@ class TestPlayer < Test::Unit::TestCase
   def test_strikeout_isnt_hit
     @player.strikeout
     assert_equal(0, @player.hits)
+  end
+
+  def test_at_bats_increments_with_single
+    @player.single
+    assert(1, @player.at_bats)
+  end
+
+  def test_three_strikes_is_strikeout
+    @player.strike
+    @player.strike
+    assert_equal(0, @player.strikeouts)
+    @player.strike
+    assert_equal(1, @player.strikeouts)
   end
 end
